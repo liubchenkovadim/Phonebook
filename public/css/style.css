@@ -1,0 +1,13 @@
+.div_form {
+    height: 20rem;
+    width: 60%;
+    border: 1px solid black;
+    align-content: center;
+    margin-left: 15%;
+}
+h2 {
+    text-align: center;
+}
+.menu {
+    margin-left:24%;
+}
