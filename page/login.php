@@ -1,5 +1,5 @@
 
-<div class="ajax_form">
+<div id="ajax_form" hidden>
 <h2>Login</h2>
 <form  action="/index.php" method="POST" id="login-menu">
     <label for="name">Username: </label>

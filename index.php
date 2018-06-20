@@ -1,7 +1,7 @@
 <?php
 session_start();
+require_once './class/SelectDB.php';
 
-require_once 'vendor/Login.php';
 
 include("page/header.php");
 ?>
@@ -11,35 +11,48 @@ include("page/header.php");
 
 if ($_SESSION['auth'] == true) {
     ?>
-    <form class="menu">
-        <input type="button" id="logout" value="Logout" >
+<div class="menu">
+
+    <button id="logout">Logout</button>
         <input type="button" id="book" value="Public Phonebook">
         <input type="button" id="mycontact" value="My Contact">
+</div>
 
-    </form><br>
-    <div class="div_form">
-
+   <br>
+    <div id="div_form_log">
+        <?php
+        include ("page/contact.php");
+        ?>
     </div>
+
     <?php
 } else {
     ?>
-    <form class="menu">
-        <input type="button" id="log" value="Login">
+<div class="menu">
+        <button id="log">Login</button>
         <input type="button" id="book" value="Public Phonebook">
-    </form><br>
-    <div class="div_form">
-
+</div>
+  <br>
+    <div id="div_form">
+        <?php
+        include("page/login.php");
+        ?>
     </div>
+
+
+
     <?php
 }
 if (!empty($_POST['name']) and !empty($_POST['pass'])) {
 
-    $log = new Login($_POST['name'], $_POST['pass']);
-    $conect = $log->connect();
+    $log = new SelectDB();
+    $conect = $log->users($_POST['name'], $_POST['pass']);
 
 
 }
 
 ?>
 
+
 </body>
+</html>

@@ -1,16 +1,17 @@
 jQuery(function ($) {
     $('#log').on('click', function () {
-        $('.div_form').load('../page/login.php');
+        $('#ajax_form').css('display','block');
+
+
 
     });
 
     $('#btn-login').on('click',function () {
-        location.reload()
+        location.reload();
     });
 
     $('#mycontact').on('click', function () {
-        $('.div_form').load('../page/myContacs.php');
-
+        $("#table_contact").css('display','block');
     });
 
 });
