@@ -8,50 +8,37 @@ include("page/header.php");
 <body>
 <h2>Phonebook</h2>
 <?php
-
+if(!empty($_SESSION['auth'])){
 if ($_SESSION['auth'] == true) {
     ?>
 <div class="menu">
-
-    <button id="logout">Logout</button>
-        <input type="button" id="book" value="Public Phonebook">
-        <input type="button" id="mycontact" value="My Contact">
+    <a href="" class="btn" id="log">Logout</a>
+    <a href="" class="btn" id="public_contact">Public Contact</a>
+    <a href="/page/contact.php" class="btn" id="my_contact">My Contact</a>
 </div>
 
-   <br>
-    <div id="div_form_log">
-        <?php
-        include ("page/contact.php");
-        ?>
-    </div>
-
     <?php
-} else {
+}
+}else {
     ?>
 <div class="menu">
-        <button id="log">Login</button>
-        <input type="button" id="book" value="Public Phonebook">
+        <a href="page/login.php" class="btn" id="log">Login</a>
+        <a href="page/" class="btn" id="public_contact">Public Contact</a>
 </div>
-  <br>
-    <div id="div_form">
-        <?php
-        include("page/login.php");
-        ?>
-    </div>
-
-
 
     <?php
 }
-if (!empty($_POST['name']) and !empty($_POST['pass'])) {
 
-    $log = new SelectDB();
-    $conect = $log->users($_POST['name'], $_POST['pass']);
+    if(isset($_POST['submit'])) {
+
+    }
+    ?>
 
 
-}
+<br>
+<div id="ajax_container">
 
-?>
+</div>
 
 
 </body>

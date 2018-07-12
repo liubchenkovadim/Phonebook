@@ -3,7 +3,7 @@
 
 class SelectDB
 {
-
+    private $user;
 
     private $pdo;
 
@@ -22,14 +22,19 @@ class SelectDB
     public function users($user,$password)
     {
 
-
+        $this->setUser($user ) ;
         $sql= "SELECT * FROM phonebook.users WHERE user = '$user' AND password = '$password'";
 
         $rows = $this->select($sql);
 
 
-        if(isset($rows)){
+        if(($rows[0]['user'] == $user) and $rows[0]['password'] == $password){
             $_SESSION['auth'] = true;
+
+
+
+        }else {
+            $_SESSION['erors'] = true;
         }
         return $rows;
     }
@@ -82,4 +87,22 @@ class SelectDB
 
         return $rows;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
 }

@@ -1,5 +1,13 @@
-<div id="table_contact" hidden>
+<div id="table_contact">
+    <?php
 
+require_once "../class/SelectDB.php";
+    $select = new SelectDB();
+    $contacts = $select->contacts($select->getUser());
+    $emails= $select->email($select->getUser());
+    $phones = $select->phones($select->getUser());
+
+    ?>
     <table>
         <tr>
             <td></td>
@@ -13,28 +21,34 @@
             <th>Phones</th>
             <th>Emails</th>
         </tr>
-        <?php
-        if ($_REQUEST['name'] !== null) {
-            $select = new SelectDB();
-            $contacts = $select->contacts($_REQUEST['name']);
-            $emails= $select->email($_REQUEST['name']);
-            $phones = $select->phones($_REQUEST['name']);
-        }
-        ?>
+
+
         <tr>
             <td>
-                <form>
+                <table>
+                    <tr>
+                        <form>
+                        <td>
+
                     <label>FirstName:</label>
-                    <input type="text" value="<?php echo $contacts[0]['firstName'] ?>"><br>
                     <label>LastName:</label>
-                    <input type="text" value="<?php echo $contacts[0]['lastName'] ?>"><br>
                     <label>Adress:</label>
-                    <input type="text" value="<?php echo $contacts[0]['adress'] ?>"><br>
                     <label>City:</label>
-                    <input type="text" value="<?php echo $contacts[0]['city'] ?>"><br>
                     <label>Country:</label>
-                    <input type="text" value="<?php echo $contacts[0]['country'] ?>"><br>
-                </form>
+
+                        </td>
+                            <td>
+                                <input type="text" value="<?php echo $contacts[0]['firstName'] ?>"><br>
+                                <input type="text" value="<?php echo $contacts[0]['lastName'] ?>"><br>
+                                <input type="text" value="<?php echo $contacts[0]['adress'] ?>"><br>
+                                <input type="text" value="<?php echo $contacts[0]['city'] ?>"><br>
+                                <input type="text" value="<?php echo $contacts[0]['country'] ?>"><br>
+
+
+                            </td>
+                        </form>
+                    </tr>
+                </table>
             </td>
             <td>
                 <form>
